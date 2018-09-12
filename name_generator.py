@@ -20,11 +20,10 @@ def generate_random_string(size=26):
         num = random.choice(range(max_length))
         s += letters[num]
 
-    print(s)
     return s
 
 
-def generate_filename(prefix='file'):
-    date = datetime.utcnow()
+def generate_filename(prefix='file', suffix='.practice'):
+    date = datetime.utcnow().date()
     stub = generate_random_string(6)
-    return "{}_{}_{}".format(prefix, stub, date)
+    return "{}_{}_{}{}".format(prefix, stub, date, suffix)

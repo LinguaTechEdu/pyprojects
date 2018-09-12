@@ -9,21 +9,23 @@ Each new file should be assigned a random name and have no extension.
 Python Learning
 1. File I/O operations using os module
 2. __name__
-3. try/except
+3. try/except (error handling)
 4. with
 """
 import os
+from name_generator import *
 
 
-def create_files(count=5):
+def create_files(count=5, suffix='.practice'):
     try:
         os.mkdir('./data')
     except FileExistsError:
         print("Directory already exists. Continuing ...")
 
-    for i in range(count):
-        with open('./data/file{}'.format(i), 'w+') as file:
-            file.write("Generic file {}".format(i))
+    for _ in range(count):
+        filename = generate_filename('CNTR', suffix)
+        with open('./data/{}'.format(filename), 'w+') as file:
+            file.write("Generic file {}".format(filename))
 
 
 def list_files():
@@ -32,5 +34,5 @@ def list_files():
 
 
 if __name__ == '__main__':
-    create_files(3)
+    create_files()
     list_files()
